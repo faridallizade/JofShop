@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using JofShop.Models
+@model List<Fruit>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,8 +58,23 @@
                                     <ul class="menu-area-main">
                                         <li class="active"><a href="#home">Home</a></li>
                                         <li><a href="#fruits">Fruits</a></li>
-                                        <li><a>Account</a></li>
-                                        <li><a>Switch to Admin Panel</a></li>
+                                        <li class="dropdown">
+                                            <a href="#">MyAccount</a>
+                                            <ul>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <li><a>@User.Identity.Name</a></li>
+                                                    <li><a asp-action="LogOut" asp-controller="Account">Logout</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a asp-action="Login" asp-controller="Account">Login</a></li>
+                                                    <li><a asp-action="Register" asp-controller="Account">Register</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+                                        
+                                        <li><a asp-controller="Admin" asp-action="Dashboard">Switch to Admin Panel</a></li>
                                     </ul>
                                 </nav>
                             </div>

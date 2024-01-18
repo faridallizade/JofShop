@@ -45,7 +45,7 @@ namespace JofShop.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            await _userManager.AddToRoleAsync(user,UserRole.Admin.ToString());
+            await _userManager.AddToRoleAsync(user,UserRole.Member.ToString());
             return RedirectToAction("Login","Account");
         }
         public IActionResult Login()
