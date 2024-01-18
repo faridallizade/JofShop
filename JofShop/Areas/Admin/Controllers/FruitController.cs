@@ -38,7 +38,7 @@ namespace JofShop.Areas.Admin.Controllers
             {
                 return View();
             }
-            if (!vm.ImageFile.CheckImage("image/"))
+            if (!vm.ImageFile.CheckImage())
             {
                 ModelState.AddModelError("Image", "Please upload Image file that size less than 3 Mb.");
                 return View();
@@ -47,7 +47,7 @@ namespace JofShop.Areas.Admin.Controllers
             {
                 Name = vm.Name,
                 CategoryName = vm.CategoryName,
-                ImgUrl = vm.ImageFile.Upload(_envy.WebRootPath, @"\Upload\Fruit"),
+                ImgUrl = vm.ImageFile.Upload(_envy.WebRootPath, @"/Upload/"),
             };
             await _context.AddAsync(fruit);
             await _context.SaveChangesAsync();
@@ -78,14 +78,14 @@ namespace JofShop.Areas.Admin.Controllers
             Fruit exist = await _context.fruits.Where(c=>c.Id == vm.Id).FirstOrDefaultAsync();
             if(exist == null) { return View(); }
             if(!ModelState.IsValid) { return View(); }
-            if (!vm.ImageFile.CheckImage("image/"))
+            if (!vm.ImageFile.CheckImage())
             {
                 ModelState.AddModelError("Image", "Please upload Image file that size less than 3 Mb.");
                 return View();
             }
             exist.Name = vm.Name;
             exist.CategoryName = vm.CategoryName;
-            exist.ImgUrl = vm.ImageFile.Upload(_envy.WebRootPath,@"\Upload\Fruit\");
+            exist.ImgUrl = vm.ImageFile.Upload(_envy.WebRootPath, @"/Upload/");
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

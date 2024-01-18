@@ -38,6 +38,7 @@ namespace JofShop.Controllers
                 Email = vm.Email,
             };
             var res = await _userManager.CreateAsync(user,vm.Password);
+
             if (!res.Succeeded)
             {
                 foreach (var error in res.Errors)
@@ -45,7 +46,8 @@ namespace JofShop.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-            await _userManager.AddToRoleAsync(user,UserRole.Member.ToString());
+
+            await _userManager.AddToRoleAsync(user,UserRole.Moderator.ToString());
             return RedirectToAction("Login","Account");
         }
         public IActionResult Login()

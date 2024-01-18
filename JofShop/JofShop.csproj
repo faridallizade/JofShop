@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\Upload\Fruit\" />
+    <Folder Include="wwwroot\Upload\" />
   </ItemGroup>
 
 </Project>
