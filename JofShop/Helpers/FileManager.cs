@@ -2,7 +2,7 @@
 {
     public static class FileManager
     {
-        public static bool CheckImage (this IFormFile file)
+        public static bool CheckImage (this IFormFile file, string v)
         {
             return file.ContentType.Contains("Image/") && file.Length / 1024 / 1024 > 3;
         }
